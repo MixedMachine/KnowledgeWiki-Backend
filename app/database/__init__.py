@@ -1,12 +1,15 @@
+import os
 import pymongo
+from dotenv import load_dotenv
 
-MONGO_SVR = "mongodb+srv"
-USER = "admin"
-PASSWORD = "1234abcd"
-DB = "test"
+load_dotenv()
+
+MONGO_SVR = os.environ.get("MONGO_SVR","mongo")
+MONGO_USER = os.environ.get("MONGO_USER")
+MONGO_PASSWORD = os.environ.get("MONGO_PASSWORD")
 
 
-client = pymongo.MongoClient(f"{MONGO_SVR}://{USER}:{PASSWORD}@cluster0.6n6g3.mongodb.net/?retryWrites=true&w=majority")
+client = pymongo.MongoClient(f"{MONGO_SVR}://{MONGO_USER}:{MONGO_PASSWORD}@cluster0.6n6g3.mongodb.net/?retryWrites=true&w=majority")
 
 db = client.WikiAPI
 
